@@ -32,9 +32,21 @@ public class printMonthDay {
 			}
 			
 			System.out.println(month+"월은 " + daysOfMonth(month)+"일까지 있습니다.");
+			printCalendar(daysOfMonth(month));
 		}
 
 		scanner.close();
+	}
+	public static void printCalendar(int days) {
+		System.out.printf("%2s%3s%3s%2s%3s%3s%2s%n","일","월","화","수","목","금","토");
+		System.out.print("---------------------");
+		for (int i = 0 ; i < days; i++) {
+			if (i % 7 == 0) {
+				System.out.println();
+			}
+			System.out.printf("%3d", i+1);
+		}
+		System.out.println();
 	}
 
 }
