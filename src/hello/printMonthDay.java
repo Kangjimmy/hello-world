@@ -8,6 +8,19 @@ public class printMonthDay {
 	public static int daysOfMonth(int month) {
 		return MAX_DAY_OF_MONTH[month-1];
 	}
+	
+	public static boolean isYoonYear (int year) {
+		if (year % 4  == 0) {
+			if (year % 100 == 0 && year % 400 != 0) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	public static void main(String[] args) {
 		
 		
@@ -15,6 +28,10 @@ public class printMonthDay {
 		
 		while(true)
 		{
+			System.out.println("년을 입력하세요");
+			
+			int year = scanner.nextInt();
+			
 			System.out.println("월을 입력하세요");
 			
 			int month = scanner.nextInt();
@@ -31,15 +48,24 @@ public class printMonthDay {
 				continue;
 			}
 			
-			System.out.println(month+"월은 " + daysOfMonth(month)+"일까지 있습니다.");
-			printCalendar(daysOfMonth(month));
+			final int days;
+			if (month == 2 && isYoonYear(year)) {
+				days = 29;
+			}
+			else {
+				days = daysOfMonth(month);
+			}
+
+			System.out.println(month+"월은 " + days+"일까지 있습니다.");
+			printCalendar(days);
 		}
 
 		scanner.close();
 	}
 	public static void printCalendar(int days) {
-		System.out.printf("%2s%3s%3s%2s%3s%3s%2s%n","일","월","화","수","목","금","토");
+		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.print("---------------------");
+
 		for (int i = 0 ; i < days; i++) {
 			if (i % 7 == 0) {
 				System.out.println();
